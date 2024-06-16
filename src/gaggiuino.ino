@@ -36,7 +36,7 @@ void setup(void) {
   LOG_INFO("Pin init");
 
   setBoilerOff();  // relayPin LOW
-  setSteamValveRelayOff();
+  //setSteamValveRelayOff();
   setSteamBoilerRelayOff();
   LOG_INFO("Boiler turned off");
 
@@ -705,15 +705,20 @@ static void profiling(void) {
       float newBarValue = currentPhase.getTarget();
       float flowRestriction =  currentPhase.getRestriction();
       openValve();
-      setPumpPressure(newBarValue, flowRestriction, currentState);
+      //setPumpPressure(newBarValue, flowRestriction, currentState);
+      setSolenoidPressure(newBarValue, flowRestriction, currentState);
+      setPumpToRawValue(100);
     } else {
       float newFlowValue = currentPhase.getTarget();
       float pressureRestriction =  currentPhase.getRestriction();
       openValve();
-      setPumpFlow(newFlowValue, pressureRestriction, currentState);
+      // setPumpFlow(newFlowValue, pressureRestriction, currentState);
+      setSolenoidFlow(newFlowValue, pressureRestriction, currentState);
+      setPumpToRawValue(100);
     }
   } else {
     setPumpOff();
+    setSteamValveRelayOff();
     closeValve();
   }
   // Keep that water at temp
@@ -856,7 +861,7 @@ static inline void sysHealthCheck(float pressureThreshold) {
           lcdShowPopup("Releasing pressure!");
           setPumpOff();
           setBoilerOff();
-          setSteamValveRelayOff();
+          //setSteamValveRelayOff();
           setSteamBoilerRelayOff();
           openValve();
           break;

@@ -19,8 +19,8 @@ HX711_2 loadcell(TIM3);
   unsigned char scale_clk = OUTPUT_OPEN_DRAIN;
 #endif
 
-float calibration_factor_lc1 = 4000; //-7050 worked for my 440lb max scale setup
-float calibration_factor_lc2 = 4000; //-7050 worked for my 440lb max scale setup
+float calibration_factor_lc1 = 0; //-7050 worked for my 440lb max scale setup
+float calibration_factor_lc2 = 1500; //-7050 worked for my 440lb max scale setup
 
 //Nextion object init
 EasyNex myNex(UART_LCD);

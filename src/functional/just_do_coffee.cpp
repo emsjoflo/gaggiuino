@@ -53,7 +53,7 @@ void justDoCoffee(const eepromValues_t &runningCfg, const SensorState &currentSt
     }
   }
   if (brewActive || !currentState.brewSwitchState) { // keep steam boiler supply valve open while steaming/descale only
-    setSteamValveRelayOff();
+    //setSteamValveRelayOff();
   }
   setSteamBoilerRelayOff();
 }
@@ -84,7 +84,7 @@ void steamCtrl(const eepromValues_t &runningCfg, SensorState &currentState) {
   if (currentState.smoothedPressure > steamThreshold_ || sensorTemperature > steamTempSetPoint) {
     setBoilerOff();
     setSteamBoilerRelayOff();
-    setSteamValveRelayOff();
+   // setSteamValveRelayOff();
     setPumpOff();
   } else {
     if (sensorTemperature < steamTempSetPoint) {
@@ -92,11 +92,11 @@ void steamCtrl(const eepromValues_t &runningCfg, SensorState &currentState) {
     } else {
       setBoilerOff();
     }
-    setSteamValveRelayOn();
-    setSteamBoilerRelayOn();
+    //setSteamValveRelayOn();
+    //setSteamBoilerRelayOn();
     #ifndef DREAM_STEAM_DISABLED // disabled for bigger boilers which have no  need of adding water during steaming
       if (currentState.smoothedPressure < activeSteamPressure_) {
-        setPumpToRawValue(3);
+    //    setPumpToRawValue(3);
       } else {
         setPumpOff();
       }

@@ -10,6 +10,7 @@
 #include "lcd/lcd.h"
 #include "peripherals/internal_watchdog.h"
 #include "peripherals/pump.h"
+#include "peripherals/solenoid.h"
 #include "peripherals/pressure_sensor.h"
 #include "peripherals/scales.h"
 #include "peripherals/peripherals.h"
