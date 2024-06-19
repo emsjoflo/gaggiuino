@@ -4,6 +4,7 @@
 #include <PSM.h>
 #include "utils.h"
 #include "internal_watchdog.h"
+#include "solenoid.h"
 
 PSM pump(zcPin, dimmerPin, PUMP_RANGE, ZC_MODE, 1, 6);
 
@@ -63,7 +64,8 @@ inline float getPumpPct(const float targetPressure, const float flowRestriction,
 // - pressure direction
 void setPumpPressure(const float targetPressure, const float flowRestriction, const SensorState &currentState) {
   float pumpPct = getPumpPct(targetPressure, flowRestriction, currentState);
-  setPumpToRawValue((uint8_t)(pumpPct * PUMP_RANGE));
+  //setPumpToRawValue((uint8_t)(pumpPct * PUMP_RANGE));
+  setSolenoidToRawValue((uint8_t)(pumpPct * PUMP_RANGE));
 }
 
 void setPumpOff(void) {
@@ -136,6 +138,7 @@ void setPumpFlow(const float targetFlow, const float pressureRestriction, const 
   }
   else {
     float pumpPct = getClicksPerSecondForFlow(targetFlow, currentState.smoothedPressure) / (float)maxPumpClicksPerSecond;
-    setPumpToRawValue(pumpPct * PUMP_RANGE);
+    //setPumpToRawValue(pumpPct * PUMP_RANGE);
+    setSolenoidToRawValue(pumpPct * PUMP_RANGE);
   }
 }
