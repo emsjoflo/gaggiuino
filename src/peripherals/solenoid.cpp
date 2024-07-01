@@ -7,7 +7,7 @@
 
 void setSolenoidToRawValue(const uint8_t val) {
  setPumpToRawValue(100);
-  if (millis() % 1000 > val*10.f) {
+  if (millis() % 1000 > val*2.5f) {
     setSteamValveRelayOff(); //H2
   } else{
     setSteamValveRelayOn(); //H2
